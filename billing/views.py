@@ -5,9 +5,11 @@ from .models import Plan, Subscription, Invoice
 from accounts.models import User
 from rest_framework.exceptions import PermissionDenied, ValidationError, NotFound
 from tenants.views import get_current_organisation
+from rest_framework.permissions import AllowAny
 
 
 class PlanListView(ListAPIView):
+    permission_classes = [AllowAny]
     queryset = Plan.objects.filter(is_active=True)
     serializer_class = PlanListSerializer
 
